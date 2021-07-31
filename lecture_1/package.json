@@ -1,0 +1,25 @@
+{
+  "name": "lecture_1",
+  "version": "1.0.0",
+  "description": "homework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "current": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vasilieva-sasha/backend-homework.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vasilieva-sasha/backend-homework/issues"
+  },
+  "homepage": "https://github.com/vasilieva-sasha/backend-homework#readme",
+  "dependencies": {
+    "yargs": "^17.0.1"
+  }
+}
