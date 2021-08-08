@@ -1,29 +1,13 @@
 #!/usr/bin/env node
-const readline = require('readline')
-const welcomeQuestion = `Давай сыграем в "Угадай число" \n\nВыбери уровень: \n`
-const levels = {
-  1: {
-    name: 'Easy',
-    max: 10,
-  },
-  2: {
-    name: 'Normal',
-    max: 100,
-  },
-  3: {
-    name: 'Hard',
-    max: 1000,
-  },
-}
+import readline from 'readline'
+import {
+  welcomeQuestion,
+  levels,
+  guessFigure,
+  giveAClue,
+} from './utils/index.js'
 
 const levelsAmount = Object.keys(levels).length
-
-const guessFigure = async (max) => await Math.floor(Math.random() * max)
-
-const giveAClue = (inputFigure, guessedFigure) =>
-  inputFigure < guessedFigure
-    ? 'Нет, загаданное больше'
-    : 'Нет, загаданное меньше'
 
 const variants = []
 for (let variant in levels) {
@@ -41,6 +25,11 @@ const rl = readline.createInterface({
 })
 
 rl.question(wholeMessage, async (answer) => {
+  if (answer.toLowerCase() === 'exit') {
+    console.log('Возвращайся еще!')
+    rl.close()
+    process.exit(0)
+  }
   if (Number(answer) > levelsAmount) {
     rl.close()
     process.exit(0)
