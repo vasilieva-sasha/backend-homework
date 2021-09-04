@@ -4,28 +4,28 @@ import fs from 'fs'
 
 const ANSWERS = ['орел', 'орёл', 'решка']
 
-const welcomeQuestion = `Давай сыграем в "Орел или решка" \n\n(набери exit, чтобы покинуть игру)\n\nЗагадал? Набери свой вариант, чтобы бросить монетку\n\n`
+const welcomeQuestion = `Давай сыграем в "Орел или решка" \n\n(набери exit/выход, чтобы покинуть игру)\n\nЗагадал? Набери набери 'орел' или 'решка', чтобы бросить монетку\n\n`
 
 const dropTheCoin = () => Math.round(Math.random())
 
+const fileName = process.argv[2]
+
+const writerStream = fs.createWriteStream(fileName)
+
+writerStream.on('finish', () => {
+  console.log(`Лог игры добавлен в ${fileName}`)
+})
+
 const writeResults = (result) => {
-  const fileName = process.argv[2]
   if (fileName) {
     let data = `{"${new Date().toISOString()}": ${result}}\n`
-    fs.appendFile(fileName, data, 'utf8', (err) => {
-      if (err) throw err
-      console.log(`Лог игры добавлен в ${fileName}`)
-    })
+    writerStream.write(data, 'UTF8')
   }
 }
 
 const checkTheResult = (answer, result) => {
   let guessedSide = null
-  if (answer.toLowerCase() === 'решка') {
-    guessedSide = 1
-  } else {
-    guessedSide = 0
-  }
+  answer.toLowerCase() === 'решка' ? (guessedSide = 1) : (guessedSide = 0)
 
   const resultSide = result === 1 ? 'решка' : 'орел'
 
@@ -42,20 +42,22 @@ const rl = readline.createInterface({
   output: process.stdout,
 })
 
-rl.question(welcomeQuestion, async (answer) => {
-  if (answer.toLowerCase() === 'exit') {
+console.log(welcomeQuestion)
+
+rl.on('close', () => {
+  writerStream.end()
+})
+
+rl.on('line', (answer) => {
+  if (answer.toLowerCase() === 'exit' || answer.toLowerCase() === 'выход') {
     console.log('Возвращайся еще!')
     rl.close()
-    process.exit(0)
   }
   if (ANSWERS.includes(answer)) {
     console.log('Бросаю...')
     const result = dropTheCoin()
     setTimeout(() => checkTheResult(answer, result), 600)
-
-    rl.close()
   } else {
     rl.close()
-    process.exit(0)
   }
 })

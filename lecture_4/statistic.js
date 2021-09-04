@@ -52,6 +52,7 @@ const showResults = (data) => {
     positiveMessage,
     'и',
     negativeMessage,
+    '\n',
     percentsMessage,
     lastSentence
   )
