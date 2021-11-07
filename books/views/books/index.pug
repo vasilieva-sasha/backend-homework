@@ -1,0 +1,12 @@
+extends ../layout.pug
+
+block header 
+  link(rel="stylesheet" href="/books/index.css")
+  script(defer src="/books/index.js")
+block content 
+  .books-content 
+    h1= title
+    .books__wrapper 
+      ol.books__list
+        each book in books
+          +book-item(book)

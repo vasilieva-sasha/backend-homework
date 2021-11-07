@@ -1,0 +1,6 @@
+mixin book-item(book)
+  li.books-list__item.book-short
+    p.book-short__title= book.title
+    .book__wrapper
+      +link('books/'+book.id, 'Посмотреть книгу').blue-btn--small
+      +link('update/'+book.id, 'Редактировать книгу').blue-btn--small

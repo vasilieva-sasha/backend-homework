@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","mappings":"mBAEAA,QAAQC,IAAI,Q","sources":["webpack://books/./views/main/assets/index.js"],"sourcesContent":["import './index.scss'\r\n\r\nconsole.log('лох')\r\n"],"names":["console","log"],"sourceRoot":""}

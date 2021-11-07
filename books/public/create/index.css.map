@@ -1,0 +1,1 @@
+{"version":3,"file":"index.css","mappings":"AAAA,eACE,aACA,SAGF,YACE,aACA,mBACA,S","sources":["webpack://books/./views/create/assets/index.scss"],"sourcesContent":[".main__wrapper {\r\n  display: flex;\r\n  gap: 20px;\r\n}\r\n\r\n.form__item {\r\n  display: flex;\r\n  align-items: center;\r\n  gap: 50px;\r\n}\r\n"],"names":[],"sourceRoot":""}

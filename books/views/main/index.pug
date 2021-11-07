@@ -1,0 +1,11 @@
+extends ../layout.pug
+
+block header 
+  link(rel="stylesheet" href="/main/index.css")
+  script(defer src="/main/index.js")
+block content 
+  .main-content 
+    h1= title
+    .main__wrapper 
+      +link('/api/books', 'Посмотреть все книги')
+      +link('/api/create', 'Добавить книгу')

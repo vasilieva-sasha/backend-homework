@@ -1,0 +1,1 @@
+{"version":3,"file":"index.css","mappings":"AAAA,eACE,aACA,S","sources":["webpack://books/./views/books/assets/index.scss"],"sourcesContent":[".book__wrapper {\r\n  display: flex;\r\n  gap: 15px;\r\n}\r\n"],"names":[],"sourceRoot":""}

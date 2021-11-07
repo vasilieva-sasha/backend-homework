@@ -1,0 +1,23 @@
+extends ../layout.pug
+
+block header 
+  link(rel="stylesheet" href="/update/index.css")
+  script(defer src="/update/index.js")
+block content 
+block content 
+  .update 
+    h1= title
+    form(method="POST" action="/api/books/" + book.id + '?_method=PUT' enctype='multipart/form-data')
+      p.form__item
+        label(for="name") Название
+        input(type="text" id="name" name="title" required value=book.title)
+      p.form__item
+        label(for="description") Описание книги
+        textarea(type="text" id="description" name="description")= book.description
+      p.form__item
+        label(for="authors") Авторы
+        input(type="text" id="authors" name="authors" value=book.authors.toString())
+      p.form__item
+        label(for="cover") обложка
+        input(type="file" id="cover" name="cover" accept="image/png, image/jpeg")
+      +button('Сохранить')
