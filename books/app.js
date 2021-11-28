@@ -16,6 +16,6 @@ app.use(methodOverride('_method'))
 
 app.use(express.static('public'))
 
-app.use('/api', router)
+app.use('/', router)
 
 app.listen(3000)

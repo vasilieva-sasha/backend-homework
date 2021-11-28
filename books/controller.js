@@ -52,7 +52,7 @@ const putBookById = (req, res) => {
     return errorHandler(res, '404')
   }
 
-  bookById.cover = '/uploads/' + fileData?.filename
+  bookById.cover = fileData ? '/uploads/' + fileData?.filename : bookById.cover
 
   return res.render('view/index', {
     book: bookById,
@@ -95,14 +95,14 @@ router.get('/update/:id', (req, res) => {
   })
 })
 
-router
-  .route('/books')
-  .get(getBooks)
-  .post(uploadFiles.single('cover'), postBooks)
+router.route('/books').get(getBooks)
+
+router.route('/api/books').post(uploadFiles.single('cover'), postBooks)
+
+router.route('/books/:id').get(getBookById)
 
 router
-  .route('/books/:id')
-  .get(getBookById)
+  .route('/api/books/:id')
   .put(uploadFiles.single('cover'), putBookById)
   .delete(deleteBookById)
 
